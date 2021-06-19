@@ -3,7 +3,7 @@ Sex Differences in Cancer
 http://sdc.yichaozheng.cn
 
 ## Raw data
-All Raw can be downloaded from follow link and put into *rawdata* folder.
+All Raw can be downloaded from follow link and put into *rawdata* folder for subsequent analysis.
 
 
 ### Phenotype
@@ -33,7 +33,7 @@ All Raw can be downloaded from follow link and put into *rawdata* folder.
 
 * [copy number (gene-level)](https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.PANCAN.sampleMap%2FGistic2_CopyNumber_Gistic2_all_data_by_genes.gz)
 
-* [copy number segments](https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.PANCAN.sampleMap%2FSNP6_genomicSegment.gz; [Full metadata](https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.PANCAN.sampleMap%2FSNP6_genomicSegment.json))
+* [copy number segments](https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.PANCAN.sampleMap%2FSNP6_genomicSegment.gz)
 
 ### Pathway
 
