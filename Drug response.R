@@ -1,8 +1,7 @@
 library(data.table)
 library(tidyverse)
-setwd("/media/CADD/longfei/project/sex_web")
 
-# ccle
+## CCLE
 ccle_drug_dat <- fread("rawdata/CCLE/CCLE_NP24.2009_Drug_data_2015.02.24.csv") %>% 
   dplyr::select(cell_line = `Primary Cell Line Name`, 
                 compound = Compound,
@@ -22,9 +21,8 @@ ccle_dat <- dplyr::inner_join(ccle_anno_dat,ccle_drug_dat)
 ccle_dat$gender <- mapvalues(ccle_dat$gender,c("female","male",""),
                              c("FEMALE","MALE","Unknown"))
 
-  
 
-# gdsc 
+## GDSC
 
 gdsc1_drug_dat <- fread("rawdata/GDSC/GDSC1_fitted_dose_response_25Feb20.csv")
 gdsc2_drug_dat <- fread("rawdata/GDSC/GDSC2_fitted_dose_response_25Feb20.csv")
@@ -51,8 +49,6 @@ gdsc_dat <- dplyr::inner_join(gdsc_anno_dat,gdsc_drug_dat) %>%
 
 gdsc_dat$gender <- mapvalues(gdsc_dat$gender,c("f","m","u",NA),
                              c("FEMALE","MALE","Unknown","Unknown"))
-
-
 
 
 drug_res_dat <- rbind(ccle_dat,gdsc_dat) %>% 

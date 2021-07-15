@@ -2,7 +2,6 @@ library(tidyverse)
 library(ChAMP)
 library(data.table)
 
-
 pd <- fread("rawdata/pancan/pancan_Curated clinical data") %>%
   dplyr::filter(gender %in% c("FEMALE", "MALE"))
 

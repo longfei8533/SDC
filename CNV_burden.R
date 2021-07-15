@@ -7,10 +7,10 @@ library(ggplot2)
 # copy number segments 
 dat <- fread("rawdata/pancan/broad.mit.edu_PANCAN_Genome_Wide_SNP_6_whitelisted.xena.gz")
 anno_dat <- fread("rawdata/pancan/pancan_Curated clinical data") %>% 
-  dplyr::filter(as.numeric(substr(sample,14,15)) < 10)   # remove no-tumor sample
+  dplyr::filter(as.numeric(substr(sample,14,15)) < 10)   # remove non-tumor sample
 #----------------------------------------CNA score-----------------------------------------
 
-## 根据文献，矫正和计算 burden DOI: https://doi.org/10.7554/eLife.50267
+## DOI: https://doi.org/10.7554/eLife.50267
 
 pr_dat <- readRDS("result/purity.rds") %>% 
   tibble::rownames_to_column(var = "sampleID") %>% 
@@ -30,8 +30,7 @@ dat_c$seg.mean <- map2(dat_c$value,dat_c$TumorPurity,function(s,p){
   log2(inside.log)
 }) %>% unlist()
 
-
-######
+##
 l3 <- read.table("rawdata/cytobands_level3_pq.csv", header = TRUE, sep = "\t")
 l4 <- read.table("rawdata/cytobands_level4_chrom.csv", header = TRUE, sep = "\t")
 
@@ -343,7 +342,7 @@ test_dat <- burden_res_anno[burden_res_anno$`cancer type abbreviation` == "LUAD"
 wilcox.test(FCS ~ gender , data=test_dat)$p.value
 
 
-#----------------------------------Region profile -------------------------------------------------
+#----------------------------------- Region profile -------------------------------------------------
 
 hg19_1m <- read.table("rawdata/CNApp/autosomes_hg19_by_1Mb.txt")
 

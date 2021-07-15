@@ -1,8 +1,6 @@
 library(data.table)
 library(tidyverse)
 
-setwd("/media/CADD/longfei/project/sex_web/")
-
 ssgsea_dat <- fread("rawdata/Pathway/PanCan33_ssGSEA_1387GeneSets_NonZero_sample_level.txt.gz") %>% as.data.frame()
 pw_s <- ssgsea_dat[,1]
 ssgsea_dat <- ssgsea_dat[,-1]

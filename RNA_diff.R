@@ -2,17 +2,15 @@ library(data.table)
 library(tidyverse)
 library(DESeq2)
 setwd("/media/CADD/longfei/project/sex_web/")
-
 ## Phenotype data
 phenotype_dat <- fread("rawdata/toil/TcgaTargetGTEX_phenotype.txt.gz") %>% 
   dplyr::filter(`_gender` %in% c("Female","Male"),`_study` %in% c("TCGA","GTEX")) %>% 
   as.data.frame()
 
-phenotype_dat1 <- dplyr::filter(phenotype_dat, `_study` == "TCGA") %>% # Remove TCGA normal tissues
-  dplyr::filter( as.numeric(substr(sample,14,15)) < 10)
-phenotype_dat <- dplyr::filter(phenotype_dat , `_study` == "GTEX") %>% 
-  rbind(phenotype_dat1)
- 
+tcga_gtex_paired <- readRDS("rawdata/toil/tcga_gtex_paired.rds") %>% 
+  dplyr::filter(!(substr(sample,1,4) == "TCGA" & type2 == "normal"))
+
+phenotype_dat <- merge(tcga_gtex_paired,phenotype_dat,by = "sample")
 purity_data <- readRDS("result/purity.rds")
 phenotype_dat <- merge(phenotype_dat,purity_data, by.x= "sample",by.y= "row.names")
 
@@ -29,69 +27,65 @@ gene <- gene$sample %>% substr(.,1,15)
 
 #############################################################
 
-
-
-## Function
-dds_fun <- function(type,tissue,purity= FALSE){
-  if(tissue == "All"){
-    sample_chose <- dplyr::filter(phenotype_dat, `_study` == type)
-  }else{
-    sample_chose <- dplyr::filter(phenotype_dat, `_study` == type , `_primary_site` == tissue  )
-  }
-
-  sam <- sample_chose[sample_chose$sample %in% colnames(count_dat),]
-  sam$sex <-  factor(sam$`_gender`)
-  countData <- count_dat[,match(sam$sample,colnames(count_dat))]
-  if(purity){
-    dds <- DESeqDataSetFromMatrix(countData, 
-                                  colData = sam, design = ~TumorPurity + sex)
-  }else{
-    dds <- DESeqDataSetFromMatrix(countData, 
-                                colData = sam, design = ~ sex)}
-  dds <- DESeq(dds)
-  res <- results(dds,contrast = c("sex","Female","Male")) 
-  res.data <- data.frame(res)
-  rownames(res.data) <- gene
-  return(res.data)
-}
-
 ##  Phenotypic statistics and filter
-phenotype_stat1 <- dplyr::group_by(phenotype_dat,`_study`,`_primary_site`) %>% 
+phenotype_stat1 <- dplyr::group_by(phenotype_dat,`_study`,tissue) %>% 
   dplyr::summarise(n_f = sum(`_gender` == "Female"),n_m = sum(`_gender` == "Male")) %>% 
   dplyr::filter(n_f > 10 & n_m >10) %>% 
   as.data.frame()
 phenotype_stat2 <- dplyr::group_by(phenotype_stat1,`_study`) %>% 
-  dplyr::summarise(`_primary_site` = "All", 
+  dplyr::summarise(`tissue` = "All", 
                    n_f = sum(n_f) ,
                    n_m = sum(n_m) 
-                  ) %>% 
-  as.data.frame()
+  ) %>% as.data.frame()
 phenotype_stat <- rbind(phenotype_stat2,phenotype_stat1)
 phenotype_stat$n_sample <- phenotype_stat$n_f + phenotype_stat$n_m
 
 saveRDS(phenotype_stat,file = "result/diff/phenotype_stat.rds")
 
-## Run function
-diff_res_list <- list()
+##
 
-for(p in c(FALSE,TRUE)){
-  for(i in 1:nrow(phenotype_stat)){
-    print(i)
-    type <- phenotype_stat$`_study`[i]
-    tissue = phenotype_stat$`_primary_site`[i]
+dds_fun <- function(count_dat,phenotype_dat,study,tissue,purity){
+  if(tissue == "All"){
+    sample_chose <- dplyr::filter(phenotype_dat, .data$`_study` == study)
+  }else{
+    sample_chose <- dplyr::filter(phenotype_dat, .data$`_study` == study , .data$tissue == {{tissue}} )
+  }
   
-    res <- dds_fun(type = type,
-          tissue = tissue ,
-          purity = p)
-    res_list <- list(res)
-    names(res_list) <- paste(type,tissue,p,sep = "_")
-    diff_res_list <- c(diff_res_list,res_list)
+  sam <- sample_chose[sample_chose$sample %in% colnames(count_dat),]
+  sam$sex <- factor(sam$`_gender`)
+  countData <- count_dat[,sam$sample,with=FALSE] %>% 
+    apply(2, as.integer)
+  
+  
+  if(purity){
+  dds <- DESeqDataSetFromMatrix(countData, 
+                                  colData = sam, design = ~TumorPurity + sex)
+  }else{
+  dds <- DESeqDataSetFromMatrix(countData, 
+                                  colData = sam, design = ~ sex)
+  }
+  dds <- DESeq(dds)
+  res <- results(dds,contrast = c("sex","Female","Male")) %>% 
+    as.data.frame()
+  rownames(res) <- gene
+  return(res)
+}
+
+diff_res_list <- list()
+for(purity in c(FALSE,TRUE)){
+  for(i in 1:nrow(phenotype_stat)){
+    study <- phenotype_stat$`_study`[i]
+    tissue <-  phenotype_stat$tissue[i]
+    res <- dds_fun(
+      count_dat,phenotype_dat,study = study,
+      tissue = tissue, purity = purity )
+    
+    list_name <- paste(study,tissue,purity,sep = "_")
+    diff_res_list[[list_name]] <- res
+    print(list_name)
   }
 }
 
 ## Save resultes
 
 saveRDS(diff_res_list,file = "result/diff/diff_res_list.rds")
-
-
-
