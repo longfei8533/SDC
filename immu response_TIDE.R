@@ -2,8 +2,6 @@ library(dplyr)
 library(data.table)
 library(org.Hs.eg.db)
 
-setwd("/media/CADD/longfei/project/sex_web/")
-
 ## read and conver log2(tpm+0.001) to tpm
 tpm_dat <- fread("rawdata/toil/TcgaTargetGtex_rsem_gene_tpm.gz") %>% # log2(tpm+0.001)
   tibble::column_to_rownames(.,"sample")
@@ -44,8 +42,8 @@ data.table::fwrite(tcga_tpm_dat,"tempdata/tcga_tpm_entrezid.gz",sep="\t",quote =
                    row.names = TRUE,compress = "gzip")
 
 
+## TIDE was installed and run used Python. https://github.com/liulab-dfci/TIDEpy 
 
-
-
+# tidepy tempdata/tcga_tpm_entrezid.gz -o result/imm_response/tide_res.txt 
 
 

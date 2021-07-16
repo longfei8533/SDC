@@ -1,5 +1,4 @@
-## 使用RNA-seq TPM数据推测肿瘤纯度
-## referenc DOI: 10.1038/ncomms9971
+## Reference DOI: 10.1038/ncomms9971
 
 library(dplyr)
 library(estimate)

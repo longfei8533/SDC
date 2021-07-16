@@ -11,8 +11,6 @@ library(data.table)
 library(dplyr)
 library(org.Hs.eg.db)
 
-setwd("/media/CADD/longfei/project/sex_web/")
-
 tpm_dat <- fread("rawdata/toil/TcgaTargetGtex_rsem_gene_tpm.gz") %>% 
   tibble::column_to_rownames(.,"sample")   ## log2(tpm+0.001)
 
@@ -45,3 +43,16 @@ sig_res<-calculate_sig_score(pdata           = NULL,
                              mini_gene_count = 2,
                              adjust_eset = TRUE)
 saveRDS(sig_res,"result/imm/signature_collection.rds")
+
+## The following code is used for additional data on the server, without attention.
+
+IOBR_signature <- list("TME-associated" = names(signature_tme),
+                       "Tumor-metabolism" = names(signature_metabolism), 
+                       "Tumor-intrinsic"= names(signature_tumor)
+)
+IOBR_signature_gene <- signature_collection
+IOBR_signature_citation <- signature_collection_citation
+
+
+save(IOBR_signature,IOBR_signature_gene,IOBR_signature_citation,sig_group,
+     file = "process/result/imm/IOBR_signature.RData")

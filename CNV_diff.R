@@ -1,9 +1,6 @@
 library(data.table)
 library(tidyverse)
 
-setwd("/media/CADD/longfei/project/sex_web/")
-
-
 ## CNV data
 cnv_dat <- fread("rawdata/pancan/TCGA.PANCAN.sampleMap_Gistic2_CopyNumber_Gistic2_all_data_by_genes.gz") %>% 
   tibble::column_to_rownames(.,"Sample")

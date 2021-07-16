@@ -1,5 +1,6 @@
 # MRNA CPM and miRNA CPM data are written to the database for easy retrieval, 
 # rather than being read directly into memory. 
+# The following code is used for additional data on the server, without attention.
 
 library(DBI)
 library(dbplyr)

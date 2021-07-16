@@ -12,8 +12,6 @@ library(data.table)
 library(org.Hs.eg.db)
 
 
-setwd("/media/CADD/longfei/project/sex_web/")
-
 ## read and conver log2(tpm+0.001) to tpm
 log2_tpm_dat <- fread("rawdata/toil/TcgaTargetGtex_rsem_gene_tpm.gz") %>% 
   tibble::column_to_rownames(.,"sample")
@@ -111,7 +109,6 @@ print(Sys.time())
 
 saveRDS(tme_combine,"result/imm/tem_combine.rds")
 
-## plot
 
 
 

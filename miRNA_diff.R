@@ -11,7 +11,7 @@ anno_dat <- fread("../rawdata/Survival_SupplementalTable_S1_20171025_xena_sp") %
 purity_data <- readRDS("../result/purity.rds")
 anno_dat <- base::merge(anno_dat,purity_data, by.x= "sample",by.y= 0)
 
-## data_download
+## data download
 for (i in unique(anno_dat$`cancer type abbreviation`)[1:33]) {
   print(i)
   CancerProject <- paste0("TCGA-", i)
@@ -85,6 +85,5 @@ for(p in c(FALSE,TRUE)){
   }
 }
 
-## Save resultes
 
 saveRDS(diff_res_list,file = "../result/diff/miRNA_diff_res_list.rds")

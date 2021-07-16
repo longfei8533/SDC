@@ -1,8 +1,7 @@
 library(data.table)
 library(tidyverse)
 library(DESeq2)
-setwd("/media/CADD/longfei/project/sex_web/")
-## Phenotype data
+
 phenotype_dat <- fread("rawdata/toil/TcgaTargetGTEX_phenotype.txt.gz") %>% 
   dplyr::filter(`_gender` %in% c("Female","Male"),`_study` %in% c("TCGA","GTEX")) %>% 
   as.data.frame()
@@ -24,8 +23,6 @@ gene <- fread("rawdata/toil/TcgaTargetGtex_gene_expected_count.gz",
               select = "sample")
 gene <- gene$sample %>% substr(.,1,15)
 
-
-#############################################################
 
 ##  Phenotypic statistics and filter
 phenotype_stat1 <- dplyr::group_by(phenotype_dat,`_study`,tissue) %>% 
@@ -85,7 +82,5 @@ for(purity in c(FALSE,TRUE)){
     print(list_name)
   }
 }
-
-## Save resultes
 
 saveRDS(diff_res_list,file = "result/diff/diff_res_list.rds")

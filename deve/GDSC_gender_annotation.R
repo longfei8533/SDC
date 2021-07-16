@@ -1,6 +1,6 @@
 library(data.table)
 library(tidyverse)
-setwd("/media/CADD/longfei/project/sex_web")
+
 cell_anno_dat <- fread("rawdata/GDSC/CosmicSample.tsv.gz") %>% 
   dplyr::filter(sample_type == "cell-line")
 GDSC_cell_dat <- fread("rawdata/GDSC/Cell_Lines_Details.csv")
