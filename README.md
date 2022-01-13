@@ -12,7 +12,7 @@ All Raw can be downloaded from follow link and put into *rawdata* folder for sub
 
 * [TCGA TARGET GTEX selected phenotypes (n=19,131) UCSC Toil RNA-seq Recompute](https://toil-xena-hub.s3.us-east-1.amazonaws.com/download/TcgaTargetGTEX_phenotype.txt.gz)
 * [Curated clinical data (n=12,591) Pan-Cancer Atlas Hub](https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/Survival_SupplementalTable_S1_20171025_xena_sp)
-* [Molecular subtype](https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/TCGASubtype.20170308.tsv.gz)
+* [Molecular subtype (n=7734)](https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/TCGASubtype.20170308.tsv.gz)
 
 ### Gene expression RNAseq
 
