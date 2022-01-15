@@ -42,6 +42,10 @@ All Raw can be downloaded from follow link and put into *rawdata* folder for sub
 
 * [z score of 1387 constituent PARADIGM pathways](https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/PanCan33_ssGSEA_1387GeneSets_NonZero_sample_level_Z.txt.gz)
 
+### Immunotherapy response
+
+* [Summary of TME subtype for each analyzed tumor (Table S6)](https://ars.els-cdn.com/content/image/1-s2.0-S1535610821002221-mmc6.xlsx)
+
 ### Drug sensitivity
 
 * [Genomics of Drug Sensitivity in Cancer](https://www.cancerrxgene.org/downloads/bulk_download) (GDSC)
