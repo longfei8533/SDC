@@ -4,6 +4,8 @@ http://sdc.yichaozheng.cn
 
 http://sdc.anticancer.xyz
 
+![示意图](README/16424193648161.png)
+
 ## Raw data
 All Raw can be downloaded from follow link and put into *rawdata* folder for subsequent analysis.
 
