@@ -6,7 +6,7 @@
 
 ---
 
-### Web 
+### Web server
 
 **http://sdc.anticancer.xyz or http://sdc.yichaozheng.cn**
 
