@@ -12,6 +12,7 @@ All Raw can be downloaded from follow link and put into *rawdata* folder for sub
 
 * [TCGA TARGET GTEX selected phenotypes (n=19,131) UCSC Toil RNA-seq Recompute](https://toil-xena-hub.s3.us-east-1.amazonaws.com/download/TcgaTargetGTEX_phenotype.txt.gz)
 * [Curated clinical data (n=12,591) Pan-Cancer Atlas Hub](https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/Survival_SupplementalTable_S1_20171025_xena_sp)
+* [Molecular subtype (n=7734)](https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/TCGASubtype.20170308.tsv.gz)
 
 ### Gene expression RNAseq
 
@@ -40,6 +41,10 @@ All Raw can be downloaded from follow link and put into *rawdata* folder for sub
 ### Pathway
 
 * [z score of 1387 constituent PARADIGM pathways](https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/PanCan33_ssGSEA_1387GeneSets_NonZero_sample_level_Z.txt.gz)
+
+### Immunotherapy response
+
+* [Summary of TME subtype for each analyzed tumor (Table S6)](https://ars.els-cdn.com/content/image/1-s2.0-S1535610821002221-mmc6.xlsx)
 
 ### Drug sensitivity
 
