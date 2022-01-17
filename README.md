@@ -1,13 +1,18 @@
-# SDC
-Sex Differences in Cancer
-http://sdc.yichaozheng.cn
+# SDC (Sex Differences in Cancer)
 
-http://sdc.anticancer.xyz
+
 
 ![示意图](README/16424193648161.png)
 
+---
+
+### Web 
+
+**http://sdc.anticancer.xyz or http://sdc.yichaozheng.cn**
+
 ## Raw data
-All Raw can be downloaded from follow link and put into *rawdata* folder for subsequent analysis.
+
+All Raw data can be downloaded from follow link.  Put the raw data into *rawdata* folder for subsequent analysis.
 
 
 ### Phenotype
