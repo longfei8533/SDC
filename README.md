@@ -66,7 +66,7 @@ L.-F. Zhao, J.-G. Zhang, F.-Y. Qi, W.-Y. Hou, Y.-R. Li, D.-D. Shen, L.-J. Zhao, 
 
 ***Contact:***
 
-Longfei Zhao: Longfei8533@qq.com
+Longfei Zhao: longfei8533@live.cn
 
 Yichao Zheng: yichaozheng@zzu.edu.cn
 
