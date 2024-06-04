@@ -23,7 +23,7 @@ Run the docker image：
 docker run --rm -ti --user shiny -p 3838:3838 longfei8533/sdc-server
 ```
 
-Open your preferred web browser and type the following URL: localhost:3838 or [IP]:3838
+Open your preferred web browser and type the following URL: `localhost:3838` or `[Host IP]:3838`
 
 ## Raw data
 
