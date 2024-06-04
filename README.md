@@ -21,7 +21,7 @@ docker pull longfei8533/sdc-server
 Run the docker image：
 
 ```
-docker run --rm -ti --user shiny  -p 3838:3838 
+docker run --rm -ti --user shiny -p 3838:3838 longfei8533/sdc-server
 ```
 
 ## Raw data
