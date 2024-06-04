@@ -6,11 +6,11 @@
 
 ---
 
-### Web server
+## Web server
 
-**http://sdc.anticancer.xyz 
+**http://sdc.anticancer.xyz**
 
-### Use with Docker
+## Use with Docker
 
 SDC has corresponding docker image at https://hub.docker.com/r/longfei8533/sdc-server, you can install the latest version with:
 
