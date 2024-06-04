@@ -8,7 +8,21 @@
 
 ### Web server
 
-**http://sdc.anticancer.xyz or http://sdc.yichaozheng.cn**
+**http://sdc.anticancer.xyz 
+
+### Use with Docker
+
+SDC has corresponding docker image at https://hub.docker.com/r/longfei8533/sdc-server, you can install the latest version with:
+
+```
+docker pull longfei8533/sdc-server
+```
+
+Run the docker image：
+
+```
+docker run --rm -ti --user shiny  -p 3838:3838 
+```
 
 ## Raw data
 
